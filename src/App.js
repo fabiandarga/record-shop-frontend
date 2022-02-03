@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import RecordList from './components/RecordList'
 
-const BACKEND_URL  = 'http://localhost:4000';
+const BACKEND_URL  = 'https://fabians-record-shop.herokuapp.com';
 const RECORDS_PATH = BACKEND_URL + '/records';
 
 async function loadRecords() {
@@ -18,6 +18,10 @@ function App() {
     loadRecords().then((data) => {
       setRecords(data);
     });
+  }, []);
+
+  useEffect(() => {
+    document.title = process.env.NODE_ENV === 'DEV' ? 'DEV Fabian\'s Records' : "Fabian's Records";
   }, []);
   
   return (
