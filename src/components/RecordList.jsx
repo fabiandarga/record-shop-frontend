@@ -12,8 +12,8 @@ const RecordList = ({ records }) => {
                 </tr>
             </thead>
             <tbody>
-                { records.map((record) => {
-                    const key=(record.title+record.artist).replace(' ', '').toLowerCase();
+                { records.map((record, idx) => {
+                    const key=(idx+record.title+record.artist).replace(' ', '').toLowerCase();
                     return <Record key={key} record={record}/>
                 })}
             </tbody>
