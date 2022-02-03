@@ -12,9 +12,10 @@ const RecordList = ({ records }) => {
                 </tr>
             </thead>
             <tbody>
-                { records.map((record) => (
-                    <Record record={record}/>
-                ))}
+                { records.map((record) => {
+                    const key=(record.title+record.artist).replace(' ', '').toLowerCase();
+                    return <Record key={key} record={record}/>
+                })}
             </tbody>
         </table>
     );
