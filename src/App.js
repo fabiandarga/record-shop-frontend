@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import RecordList from './components/RecordList'
 
-const BACKEND_URL  = 'https://fabians-record-shop.herokuapp.com';
+const BACKEND_URL  = process.env.REACT_APP_BACKEND_URL;
 const RECORDS_PATH = BACKEND_URL + '/records';
+
+console.log('backend '+BACKEND_URL);
 
 async function loadRecords() {
   const res = await fetch(RECORDS_PATH);
