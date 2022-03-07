@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import RecordList from 'components/UserList'
+import UserList from 'components/UserList';
 
 const BACKEND_URL  = process.env.REACT_APP_BACKEND_URL;
 const RECORDS_PATH = BACKEND_URL + '/users';
@@ -13,7 +13,7 @@ async function loadUsers() {
 }
 
 const UsersPage = () => {
-    const [records, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
 
   useEffect(() => {
     loadUsers().then((data) => {
@@ -23,7 +23,7 @@ const UsersPage = () => {
   
   return (
     <div className="list-page">
-        <RecordList records={records} />
+        <UserList users={users} /> 
     </div>
   );
 }

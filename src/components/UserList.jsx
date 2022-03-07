@@ -11,9 +11,8 @@ const userList = ({ users }) => {
                 </tr>
             </thead>
             <tbody>
-                { users.map((user, idx) => {
-                    const key=(idx+user.title+user.artist).replace(' ', '').toLowerCase();
-                    return <User key={key} user={user}/>
+                { users.map((user) => {
+                    return <User key={user._id} user={user}/>
                 })}
             </tbody>
         </table>
