@@ -6,17 +6,22 @@ const RECORDS_PATH = BACKEND_URL + '/records';
 
 console.log('backend '+BACKEND_URL);
 
-async function loadRecords() {
-  const res = await fetch(RECORDS_PATH);
+async function loadRecords(token) {
+  const res = await fetch(RECORDS_PATH, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  });
   const data = await res.json();
   return data;
 }
 
-const RecordsPage = () => {
+const RecordsPage = ({ token }) => {
     const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    loadRecords().then((data) => {
+    loadRecords(token).then((data) => {
       setRecords(data);
     });
   }, []);

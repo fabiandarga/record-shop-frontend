@@ -11,7 +11,6 @@ const RegisterPage = () => {
 
     const submitHandler = (e) => {
         e.preventDefault(); // Verhindert, dass der Browsert eine neue Seite öffnet
-        console.log('/api/register', email, password);
 
         const options =  {
             method: 'POST',
@@ -27,7 +26,7 @@ const RegisterPage = () => {
             })
         };
 
-        fetch(USERS_PATH, options);
+        fetch(USERS_PATH+'/register', options);
     }
 
     return (

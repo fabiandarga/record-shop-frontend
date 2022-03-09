@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Routes,
   Route,
@@ -11,6 +11,14 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 
 function App() {
+  const [token, setToken] = useState('');
+
+  const loginHandler = (data) => {
+    const freshToken = data.token;
+    if (freshToken) {
+      setToken(freshToken);
+    }
+  };
 
   useEffect(() => {
     document.title = process.env.NODE_ENV === 'DEV' ? 'DEV Fabian\'s Records' : "Fabian's Records";
@@ -31,9 +39,9 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/records" element={ <RecordsPage /> }></Route>
-          <Route path="/users" element={ <UsersPage /> }></Route>
-          <Route path="/login" element={ <LoginPage />}></Route>
+          <Route path="/records" element={ <RecordsPage token={token} /> }></Route>
+          <Route path="/users" element={ <UsersPage token={token} /> }></Route>
+          <Route path="/login" element={ <LoginPage onLogin={loginHandler} />}></Route>
           <Route path="/register" element={ <RegisterPage />}></Route>
         </Routes>
       </main>
